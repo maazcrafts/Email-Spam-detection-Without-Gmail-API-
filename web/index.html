@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Email Spam Detection using Natural Language Processing and Logistic Regression.">
-  <title>Email Spam Detection</title>
+  <meta name="description" content="AI-powered Gmail spam detection using NLP and Logistic Regression.">
+  <title>Gmail Spam Detection</title>
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
@@ -16,23 +16,26 @@
       <div class="brand">
         <div class="brand-icon">✉</div>
         <div>
-          <span class="eyebrow">MACHINE LEARNING SYSTEM</span>
-          <h1>Email Spam Detection</h1>
+          <span class="eyebrow">AI EMAIL SECURITY</span>
+          <h1>Gmail Spam Detection</h1>
         </div>
       </div>
-      <div class="status-pill" id="statusPill">
-        <span class="status-dot"></span>
-        <span id="statusText">Connecting...</span>
+      <div class="header-actions">
+        <div class="status-pill" id="statusPill">
+          <span class="status-dot"></span>
+          <span id="statusText">Starting model...</span>
+        </div>
+        <button class="gmail-button" id="gmailButton" type="button">Connect Gmail</button>
       </div>
     </header>
 
     <section class="hero">
       <div class="hero-copy">
-        <span class="hero-kicker">NLP · LOGISTIC REGRESSION</span>
-        <h2>Detect suspicious emails<br><span>before they reach you.</span></h2>
+        <span class="hero-kicker">GMAIL · NLP · LOGISTIC REGRESSION</span>
+        <h2>Find suspicious emails<br><span>inside your inbox.</span></h2>
         <p>
-          Paste an email message and let the trained machine-learning model
-          classify it as <strong>Spam</strong> or <strong>Not Spam</strong>.
+          Connect Gmail with read-only access, scan recent inbox messages,
+          and let the machine-learning model classify them as Spam or Not Spam.
         </p>
       </div>
       <div class="hero-mark">
@@ -41,53 +44,52 @@
       </div>
     </section>
 
-    <section class="stats-grid" id="statsGrid">
-      <article class="stat-card">
-        <span>DATASET</span>
-        <strong id="records">—</strong>
-        <small>email records</small>
-      </article>
-      <article class="stat-card">
-        <span>FEATURES</span>
-        <strong id="features">—</strong>
-        <small>text features</small>
-      </article>
-      <article class="stat-card">
-        <span>MODEL</span>
-        <strong>Logistic</strong>
-        <small>Regression</small>
-      </article>
-      <article class="stat-card">
-        <span>TEST ACCURACY</span>
-        <strong id="accuracy">—</strong>
-        <small>held-out test set</small>
-      </article>
+    <section class="stats-grid">
+      <article class="stat-card"><span>DATASET</span><strong id="records">—</strong><small>email records</small></article>
+      <article class="stat-card"><span>FEATURES</span><strong id="features">—</strong><small>text features</small></article>
+      <article class="stat-card"><span>MODEL</span><strong>Logistic</strong><small>Regression</small></article>
+      <article class="stat-card"><span>TEST ACCURACY</span><strong id="accuracy">—</strong><small>held-out test set</small></article>
+    </section>
+
+    <section class="gmail-panel">
+      <div class="section-heading">
+        <div><span class="section-number">01</span><h3>Gmail inbox scanner</h3></div>
+        <span class="limit">Read-only · Up to 50 messages</span>
+      </div>
+
+      <div class="gmail-toolbar">
+        <div>
+          <strong id="gmailState">Gmail not connected</strong>
+          <p id="gmailHint">Connect your Google account to scan recent inbox messages.</p>
+        </div>
+        <div class="toolbar-actions">
+          <button class="secondary-button hidden" id="disconnectButton" type="button">Disconnect</button>
+          <button id="scanButton" type="button" disabled>Scan Inbox <span class="button-arrow">→</span></button>
+        </div>
+      </div>
+
+      <div class="scan-summary hidden" id="scanSummary">
+        <div><span>SCANNED</span><strong id="scannedCount">0</strong></div>
+        <div><span>MODEL SPAM</span><strong id="spamCount">0</strong></div>
+        <div><span>MODEL SAFE</span><strong id="safeCount">0</strong></div>
+      </div>
+
+      <div class="mail-list" id="mailList">
+        <div class="empty-state">Connect Gmail to start scanning your inbox.</div>
+      </div>
     </section>
 
     <section class="workspace">
       <div class="section-heading">
-        <div>
-          <span class="section-number">01</span>
-          <h3>Analyze an email</h3>
-        </div>
+        <div><span class="section-number">02</span><h3>Analyze an email manually</h3></div>
         <span class="limit">Up to 50,000 characters</span>
       </div>
 
-      <textarea
-        id="emailInput"
-        maxlength="50000"
-        placeholder="Paste the email body here..."
-        spellcheck="false"
-      ></textarea>
+      <textarea id="emailInput" maxlength="50000" placeholder="Paste an email body here..." spellcheck="false"></textarea>
 
       <div class="action-row">
-        <div class="input-meta">
-          <span id="charCount">0</span> characters
-        </div>
-        <button id="checkButton" type="button">
-          <span id="buttonText">Check Email</span>
-          <span class="button-arrow">→</span>
-        </button>
+        <div class="input-meta"><span id="charCount">0</span> characters</div>
+        <button id="checkButton" type="button"><span id="buttonText">Check Email</span><span class="button-arrow">→</span></button>
       </div>
 
       <div id="errorBox" class="message error hidden"></div>
@@ -99,31 +101,24 @@
           <h3 id="resultTitle">—</h3>
           <p id="resultDescription">—</p>
         </div>
-        <div class="confidence">
-          <span>CONFIDENCE</span>
-          <strong id="confidenceValue">—</strong>
-        </div>
+        <div class="confidence"><span>CONFIDENCE</span><strong id="confidenceValue">—</strong></div>
       </section>
     </section>
 
     <section class="how-grid">
-      <div>
-        <span class="section-number">02</span>
-        <h3>How it works</h3>
-      </div>
+      <div><span class="section-number">03</span><h3>How it works</h3></div>
       <div class="steps">
-        <article><b>01</b><span>Text extraction</span><p>Your email body becomes machine-readable text.</p></article>
-        <article><b>02</b><span>Feature encoding</span><p>CountVectorizer converts words into numerical features.</p></article>
-        <article><b>03</b><span>Classification</span><p>Logistic Regression predicts the email category.</p></article>
+        <article><b>01</b><span>Authorize</span><p>Google OAuth grants this app read-only Gmail access.</p></article>
+        <article><b>02</b><span>Extract</span><p>Recent inbox messages are fetched and their text is extracted.</p></article>
+        <article><b>03</b><span>Classify</span><p>CountVectorizer and Logistic Regression score each message.</p></article>
       </div>
     </section>
 
     <footer>
-      <span>Email Spam Detection · Python · FastAPI · Scikit-learn</span>
+      <span>Gmail Spam Detection · Python · FastAPI · Scikit-learn</span>
       <a href="/docs" target="_blank" rel="noreferrer">API Docs ↗</a>
     </footer>
   </main>
-
   <script src="/assets/app.js"></script>
 </body>
 </html>
