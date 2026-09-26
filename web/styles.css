@@ -388,3 +388,35 @@ footer a:hover { color: white; }
   .steps { grid-template-columns: 1fr; }
   footer { align-items: flex-start; flex-direction: column; }
 }
+
+.header-actions{display:flex;align-items:center;gap:10px}
+.gmail-button,.secondary-button{padding:10px 14px;border-radius:11px}
+.gmail-button:disabled{cursor:not-allowed;opacity:.45}
+.secondary-button{background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text);box-shadow:none}
+.gmail-panel{margin-bottom:12px;padding:28px;border:1px solid var(--border);border-radius:22px;background:var(--panel);box-shadow:var(--shadow)}
+.gmail-toolbar{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:18px;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.02)}
+.gmail-toolbar strong{font-size:16px}
+.gmail-toolbar p{margin:6px 0 0;color:var(--muted);font-size:13px}
+.toolbar-actions{display:flex;gap:9px;align-items:center}
+.scan-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.scan-summary>div{padding:15px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.02)}
+.scan-summary span{font-size:10px;letter-spacing:.14em;color:var(--muted);font-weight:700}
+.scan-summary strong{display:block;margin-top:6px;font-size:22px}
+.mail-list{display:grid;gap:9px;margin-top:12px}
+.mail-item{display:grid;grid-template-columns:1fr auto;gap:18px;padding:17px;border:1px solid var(--border);border-left:3px solid #64748b;border-radius:14px;background:rgba(255,255,255,.02)}
+.mail-spam{border-left-color:#ef4444;background:rgba(127,29,29,.12)}
+.mail-safe{border-left-color:#22c55e}
+.mail-topline{display:flex;align-items:center;gap:10px}
+.mail-badge{font-size:9px;font-weight:900;letter-spacing:.12em;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.08)}
+.mail-spam .mail-badge{color:#fecaca;background:rgba(239,68,68,.12)}
+.mail-safe .mail-badge{color:#bbf7d0;background:rgba(34,197,94,.12)}
+.mail-date{font-size:10px;color:var(--muted)}
+.mail-item h4{margin:9px 0 4px;font-size:15px}
+.mail-from{margin:0;color:#b5bac3;font-size:12px}
+.mail-snippet{margin:7px 0 0;color:#7f8590;font-size:12px;line-height:1.5}
+.mail-confidence{text-align:right;align-self:center}
+.mail-confidence span{font-size:9px;letter-spacing:.12em;color:var(--muted)}
+.mail-confidence strong{display:block;margin-top:5px;font-size:20px}
+.empty-state{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--border);border-radius:14px;font-size:13px}
+@media (max-width:800px){.header-actions{flex-wrap:wrap;justify-content:flex-end}.gmail-toolbar{align-items:flex-start;flex-direction:column}.mail-item{grid-template-columns:1fr}.mail-confidence{text-align:left}.scan-summary{grid-template-columns:1fr 1fr 1fr}}
+@media (max-width:560px){.topbar{flex-direction:column}.header-actions{width:100%;justify-content:space-between}.gmail-panel{padding:20px}.gmail-button{flex:1}.scan-button{width:auto}.mail-item{padding:14px}}
